@@ -25,6 +25,19 @@ AS $$
 $$;
 
 --
+-- Create a aws_commons._s3_uri_1 object that holds the bucket, key and region
+--
+
+CREATE OR REPLACE FUNCTION aws_commons.create_s3_uri(
+   s3_bucket text,
+   s3_key text,
+) RETURNS aws_commons._s3_uri_1
+LANGUAGE plpython3u IMMUTABLE
+AS $$
+    return (s3_bucket, s3_key, aws_s3.aws_region)
+$$;
+
+--
 -- Create a aws_commons._aws_credentials_1 object that holds the access_key, secret_key and session_token
 --
 
