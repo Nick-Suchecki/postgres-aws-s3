@@ -195,7 +195,6 @@ AS $$
     s3 = boto3.client(
         's3',
         region_name=region,
-        **aws_settings
     )
 
     with tempfile.NamedTemporaryFile() as fd:
