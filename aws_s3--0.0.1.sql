@@ -179,17 +179,11 @@ AS $$
     boto3 = cache_import('boto3')
     tempfile = cache_import('tempfile')
 
-    plan = plpy.prepare("select name, current_setting('aws_s3.' || name, true) as value from (select unnest(array['access_key_id', 'secret_access_key', 'session_token', 'endpoint_url']) as name) a");
-    default_aws_settings = {
-        row['name']: row['value']
-        for row in plan.execute()
-    }
-
     aws_settings = {
-        'aws_access_key_id': access_key if access_key else default_aws_settings.get('access_key_id', 'unknown'),
-        'aws_secret_access_key': secret_key if secret_key else default_aws_settings.get('secret_access_key', 'unknown'),
-        'aws_session_token': session_token if session_token else default_aws_settings.get('session_token'),
-        'endpoint_url': endpoint_url if endpoint_url else default_aws_settings.get('endpoint_url')
+        'aws_access_key_id': 'test',
+        'aws_secret_access_key': 'test',
+        'aws_session_token': 'test',
+        'endpoint_url': "http://localhost:4566"
     }
 
     s3 = boto3.client(
