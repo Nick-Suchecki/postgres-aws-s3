@@ -183,7 +183,7 @@ AS $$
         'aws_access_key_id': 'test',
         'aws_secret_access_key': 'test',
         'aws_session_token': 'test',
-        'endpoint_url': "http://localhost:4566"
+        'endpoint_url': "http://localstack:4566"
     }
 
     s3 = boto3.client(
